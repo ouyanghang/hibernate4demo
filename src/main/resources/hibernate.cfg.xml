@@ -10,9 +10,8 @@
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">root</property>
-        <property name="hibernate.jdbc.batch_size">20</property>
-
+        <property name="connection.password">admin</property>
+        <property name="hibernate.jdbc.batch_size">16</property>
         <property name="hibernate.c3p0.min_size">5</property>
         <property name="hibernate.c3p0.max_size">20</property>
         <property name="hibernate.c3p0.timeout">300</property>
@@ -21,7 +20,8 @@
 
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
-        <property name="hbm2ddl.auto">create</property>
+        <!--Drop and re-create the database schema on startup  -->
+        <property name="hbm2ddl.auto">update</property>
 
         <mapping resource="hbm/Site.hbm.xml"/>
     </session-factory>

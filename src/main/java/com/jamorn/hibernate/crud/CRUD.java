@@ -8,10 +8,10 @@ import org.hibernate.Transaction;
 import java.util.Date;
 
 /**
- * Created by sunyameng on 14-4-2.
+ * Created by yameng on 14-4-2.
  */
-public class CreateDemo {
-    public static void main(String[] args) {
+public class CRUD {
+    public static void create(){
         Session session= HibernateSessionFactory.getSession();
         Transaction transaction=session.beginTransaction();
         try {
@@ -28,5 +28,25 @@ public class CreateDemo {
         } finally {
             HibernateSessionFactory.closeSession();
         }
+    }
+
+    public static void query(){
+        Session session=HibernateSessionFactory.getSession();
+        Transaction transaction=session.beginTransaction();
+        try {
+            Site site=(Site)session.createQuery("select site from Site site where site.id=:id").setParameter("id",new Long(1)).uniqueResult();
+            System.out.println(site.getName());
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+        }finally {
+            HibernateSessionFactory.closeSession();
+        }
+
+    }
+    public static void main(String[] args) {
+        //CRUD.query();
+        CRUD.create();
     }
 }
