@@ -42,11 +42,11 @@
             <version>5.1.28</version>
             <scope>runtime</scope>
         </dependency>
-        <!-- C3P0 -->
+        <!--Hibernate C3P0 -->
         <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.9.5-pre7</version>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>4.3.4.Final</version>
         </dependency>
         <!-- log -->
         <dependency>
