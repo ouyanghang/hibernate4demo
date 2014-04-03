@@ -1,4 +1,4 @@
-package com.jamorn.hibernate.annotation;
+package com.jamorn.hibernate.annotation.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -7,13 +7,18 @@ import java.io.Serializable;
  * Created by sunyameng on 14-4-3.
  */
 @Entity
+@Table(name = "a_customer")
 public class Customer implements Serializable{
     private Long id;
     private String name;
     private Integer age;
     private Address address;
-    @Version @Column(name="OPTLOCK")
-    private Integer version;
+    public Customer(){}
+    public Customer(String name,Integer age){
+        this.name=name;
+        this.age=age;
+    }
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
@@ -23,6 +28,7 @@ public class Customer implements Serializable{
         this.id = id;
     }
 
+    @Column(name="name",nullable = false,length = 30)
     public String getName() {
         return name;
     }
@@ -31,6 +37,7 @@ public class Customer implements Serializable{
         this.name = name;
     }
 
+    @OneToOne(optional = false,mappedBy = "customer",cascade = CascadeType.ALL)
     public Address getAddress() {
         return address;
     }
@@ -39,6 +46,7 @@ public class Customer implements Serializable{
         this.address = address;
     }
 
+    @Column(name="age",nullable = false)
     public Integer getAge() {
         return age;
     }
@@ -47,11 +55,4 @@ public class Customer implements Serializable{
         this.age = age;
     }
 
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jamorn.hibernate.xml.entity" auto-import="false">
+    <class name="Address" table="x_address">
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="address" column="address" type="string" not-null="false" length="30"/>
+        <many-to-one name="customer" column="customer_id" unique="true" cascade="all"/>
+    </class>
+</hibernate-mapping>
