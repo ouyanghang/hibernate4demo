@@ -12,12 +12,65 @@
     <schema name="" catalog="mysql"/>
     <schema name="" catalog="performance_schema"/>
     <schema name="" catalog="test"/>
+    <table name="a_address" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="address" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="customer_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_jxokypa0sg6f2nrx3s3ma82wc" columns="customer_id" ref-table="a_customer" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UK_jxokypa0sg6f2nrx3s3ma82wc" unique="true" columns="customer_id"/>
+    </table>
+    <table name="a_bose" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_5mmpg2w50lhj6ejroyi2aowjn" table="a_company" schema="" catalog="hibernate4demo" columns="bose_id"/>
+      <exported-key name="FK_2rvissjysxxj12dn05358974w" table="company_bose" schema="" catalog="hibernate4demo" columns="company_id"/>
+    </table>
+    <table name="a_company" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="bose_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_5mmpg2w50lhj6ejroyi2aowjn" columns="bose_id" ref-table="a_bose" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_mjyqjbth6oyj4rcdia4tcvhln" table="company_bose" schema="" catalog="hibernate4demo" columns="bose_id"/>
+      <index name="UK_5mmpg2w50lhj6ejroyi2aowjn" unique="true" columns="bose_id"/>
+    </table>
+    <table name="a_customer" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="age" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_jxokypa0sg6f2nrx3s3ma82wc" table="a_address" schema="" catalog="hibernate4demo" columns="customer_id"/>
+    </table>
+    <table name="company_bose" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="bose_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="company_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="company_id"/>
+      <foreign-key name="FK_2rvissjysxxj12dn05358974w" columns="company_id" ref-table="a_bose" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_mjyqjbth6oyj4rcdia4tcvhln" columns="bose_id" ref-table="a_company" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UK_mjyqjbth6oyj4rcdia4tcvhln" unique="true" columns="bose_id"/>
+    </table>
     <table name="m_site" schema="" catalog="hibernate4demo" type="TABLE">
       <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
       <column name="code" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
       <column name="name" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
       <column name="createtime" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
       <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="x_address" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="address" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="customer_id" sqlType="BIGINT" length="19" precision="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_76mo5ycj8u14wetoyhclhxcsx" columns="customer_id" ref-table="x_customer" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UK_76mo5ycj8u14wetoyhclhxcsx" unique="true" columns="customer_id"/>
+    </table>
+    <table name="x_customer" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_76mo5ycj8u14wetoyhclhxcsx" table="x_address" schema="" catalog="hibernate4demo" columns="customer_id"/>
     </table>
     <table name="CHARACTER_SETS" schema="" catalog="information_schema" type="SYSTEM VIEW">
       <column name="CHARACTER_SET_NAME" sqlType="VARCHAR" length="32" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
