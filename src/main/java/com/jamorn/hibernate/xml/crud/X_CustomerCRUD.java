@@ -1,24 +1,27 @@
-package com.jamorn.hibernate.annotation.crud;
+package com.jamorn.hibernate.xml.crud;
 
-import com.jamorn.hibernate.annotation.entity.Bose;
-import com.jamorn.hibernate.annotation.entity.Company;
 import com.jamorn.hibernate.util.HibernateSessionFactory;
+import com.jamorn.hibernate.xml.entity.Address;
+import com.jamorn.hibernate.xml.entity.Customer;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**
- * Created by sunyameng on 14-4-4.
+ * Created by yameng on 2014/4/3.
  */
-public class BoseCompanyCRUD {
+public class X_CustomerCRUD {
     public static void create(){
         Session session= HibernateSessionFactory.getSession();
         Transaction transaction=session.beginTransaction();
         try {
-            Bose bose = new Bose("superman");
-            Company company = new Company("supercompany");
-            bose.setCompany(company);
-            company.setBose(bose);
-            session.save(company);
+            Customer customer=new Customer();
+            customer.setName("aaa");
+            Address address=new Address();
+            address.setAddress("addfd");
+            address.setCustomer(customer);
+            customer.setAddress(address);
+
+            session.save(customer);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -30,8 +33,8 @@ public class BoseCompanyCRUD {
     public static void query(){
         Session session= HibernateSessionFactory.getSession();
         try {
-            Company company=(Company)session.createQuery("select company from Company company where company.id=:id").setParameter("id", 1).uniqueResult();
-            System.out.println(company.getName());
+            Customer customer=(Customer)session.createQuery("select customer from Customer customer where customer.id=:id").setParameter("id",new Long(1)).uniqueResult();
+            System.out.println(customer.getName()+" "+customer.getAddress().getAddress());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -39,6 +42,7 @@ public class BoseCompanyCRUD {
         }
     }
     public static void main(String[] args) {
-        AdressCustomerCRUD.create();
+        X_CustomerCRUD.create();
+        //X_CustomerCRUD.query();
     }
 }

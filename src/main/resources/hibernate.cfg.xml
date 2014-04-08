@@ -21,15 +21,27 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <!--Drop and re-create the database schema on startup  -->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
 
         <mapping resource="hbm/Address.hbm.xml"/>
         <mapping resource="hbm/Customer.hbm.xml"/>
 
+        <mapping resource="hbm/Product.hbm.xml"/>
+        <mapping resource="hbm/ProductInfo.hbm.xml"/>
+
+        <mapping resource="hbm/Parent.hbm.xml"/>
+        <mapping resource="hbm/Child.hbm.xml"/>
+
         <mapping class="com.jamorn.hibernate.annotation.entity.Customer"/>
         <mapping class="com.jamorn.hibernate.annotation.entity.Address"/>
 
-        <mapping class="com.jamorn.hibernate.annotation.entity.Bose"/>
-        <mapping class="com.jamorn.hibernate.annotation.entity.Company"/>
+        <mapping class="com.jamorn.hibernate.annotation.entity.Parent"/>
+        <mapping class="com.jamorn.hibernate.annotation.entity.Child"/>
+
+        <!--<mapping class="com.jamorn.hibernate.annotation.entity.Product"/>-->
+        <!--<mapping class="com.jamorn.hibernate.annotation.entity.ProductInfo"/>-->
+
+
+
     </session-factory>
 </hibernate-configuration>

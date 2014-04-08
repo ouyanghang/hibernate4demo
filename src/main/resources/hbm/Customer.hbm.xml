@@ -6,6 +6,6 @@
             <generator class="native"/>
         </id>
         <property name="name" column="name" type="string" not-null="false" length="30"/>
-        <one-to-one name="address" class="com.jamorn.hibernate.xml.entity.Address" cascade="all" />
+        <many-to-one name="address" column="address_id" unique="true" cascade="all" />
     </class>
 </hibernate-mapping>

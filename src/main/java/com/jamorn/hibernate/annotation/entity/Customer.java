@@ -37,7 +37,8 @@ public class Customer implements Serializable{
         this.name = name;
     }
 
-    @OneToOne(optional = false,mappedBy = "customer",cascade = CascadeType.ALL)
+    @OneToOne(optional = false,cascade = CascadeType.ALL)
+    @JoinColumn(name="address_id", unique=false, nullable=true, updatable=false)
     public Address getAddress() {
         return address;
     }

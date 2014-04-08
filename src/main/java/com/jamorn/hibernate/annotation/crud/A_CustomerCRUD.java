@@ -9,7 +9,7 @@ import org.hibernate.Transaction;
 /**
  * Created by yameng on 2014/4/3.
  */
-public class AdressCustomerCRUD {
+public class A_CustomerCRUD {
     public static void create(){
         Session session= HibernateSessionFactory.getSession();
         Transaction transaction=session.beginTransaction();
@@ -40,6 +40,6 @@ public class AdressCustomerCRUD {
         }
     }
     public static void main(String[] args) {
-        AdressCustomerCRUD.create();
+        A_CustomerCRUD.create();
     }
 }

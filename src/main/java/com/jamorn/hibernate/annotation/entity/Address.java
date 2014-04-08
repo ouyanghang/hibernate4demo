@@ -38,8 +38,7 @@ public class Address {
         this.address = address;
     }
 
-    @OneToOne(optional = false,cascade =CascadeType.ALL )
-    @JoinColumn(name="customer_id", unique=false, nullable=true, updatable=false)
+    @OneToOne(optional = false,mappedBy = "address",cascade =CascadeType.ALL )
     public Customer getCustomer() {
         return customer;
     }

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jamorn.hibernate.xml.entity" auto-import="false">
+    <!--从属表-->
+    <class name="ProductInfo" table="x_productInfo">
+        <id name="id" type="int" column="id">
+            <!--使用外键生成策略-->
+            <generator class="foreign">
+                <!--参考外键实体的属性名-->
+                <param name="property">product</param>
+            </generator>
+        </id>
+        <property name="info" type="string" not-null="false" length="30"/>
+        <one-to-one name="product" class="Product" constrained="true" cascade="all"/>
+    </class>
+</hibernate-mapping>
