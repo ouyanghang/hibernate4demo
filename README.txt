@@ -18,3 +18,4 @@ com.jamorn.hibernate
 映射关系：
 Address  Customer  一对一外键关联双向映射
 Parent   Child     一对多单向关联
+Mother   Daughter  一对多双向关联
