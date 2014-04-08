@@ -86,7 +86,6 @@
         </dependency>
     </dependencies>
 
-
     <build>
         <finalName>hibernate4demo</finalName>
         <plugins>
