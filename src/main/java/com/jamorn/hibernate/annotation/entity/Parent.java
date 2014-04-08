@@ -1,6 +1,7 @@
 package com.jamorn.hibernate.annotation.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -15,7 +16,7 @@ public class Parent {
     private String name;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_id",nullable = false)
-    private Set<Child> children;
+    private Set<Child> children=new HashSet<>();
     public Parent(){}
     public Parent(String name,Set<Child> children){
         this.name=name;

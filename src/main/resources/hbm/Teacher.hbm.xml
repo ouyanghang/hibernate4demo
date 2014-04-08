@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jamorn.hibernate.xml.entity" auto-import="false">
+    <class name="Teacher" table="x_teacher">
+        <id name="id" type="int" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string" not-null="false" length="30"/>
+        <set name="students" inverse="true" cascade="all" table="x_teacher_student">
+            <key column="teacher_id" not-null="true"/>
+            <many-to-many column="student_id" class="Student"/>
+        </set>
+    </class>
+</hibernate-mapping>

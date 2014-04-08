@@ -21,7 +21,7 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <!--Drop and re-create the database schema on startup  -->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
 
         <mapping resource="hbm/Address.hbm.xml"/>
         <mapping resource="hbm/Customer.hbm.xml"/>
@@ -32,11 +32,25 @@
         <mapping resource="hbm/Parent.hbm.xml"/>
         <mapping resource="hbm/Child.hbm.xml"/>
 
+        <mapping resource="hbm/Mother.hbm.xml"/>
+        <mapping resource="hbm/Daughter.hbm.xml"/>
+
+        <mapping resource="hbm/Teacher.hbm.xml"/>
+        <mapping resource="hbm/Student.hbm.xml"/>
+
+
         <mapping class="com.jamorn.hibernate.annotation.entity.Customer"/>
         <mapping class="com.jamorn.hibernate.annotation.entity.Address"/>
 
         <mapping class="com.jamorn.hibernate.annotation.entity.Parent"/>
         <mapping class="com.jamorn.hibernate.annotation.entity.Child"/>
+
+        <mapping class="com.jamorn.hibernate.annotation.entity.Mother"/>
+        <mapping class="com.jamorn.hibernate.annotation.entity.Daughter"/>
+
+        <mapping class="com.jamorn.hibernate.annotation.entity.Teacher"/>
+        <mapping class="com.jamorn.hibernate.annotation.entity.Student"/>
+
 
         <!--<mapping class="com.jamorn.hibernate.annotation.entity.Product"/>-->
         <!--<mapping class="com.jamorn.hibernate.annotation.entity.ProductInfo"/>-->

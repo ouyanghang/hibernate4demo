@@ -5,23 +5,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by sunyameng on 2014/4/8.
+ * Created by yameng on 2014/4/8.
  */
 @Entity
-@Table(name="a_mother")
-public class Mother {
+@Table(name="a_teacher")
+public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @OneToMany(mappedBy = "mother",cascade = CascadeType.ALL)
-    @OrderBy("age")
-    private Set<Daughter> daughters=new HashSet<>();
-    public Mother(){}
-    public Mother(String name){
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="a_teacher_student",joinColumns={@JoinColumn(name="teacher_id")},
+                inverseJoinColumns = {@JoinColumn(name="student_id")})
+    private Set<Student> students=new HashSet<>();
+
+    public Teacher(){}
+    public Teacher(String name){
         this.name=name;
     }
-
     public Integer getId() {
         return id;
     }
@@ -38,11 +39,11 @@ public class Mother {
         this.name = name;
     }
 
-    public Set<Daughter> getDaughters() {
-        return daughters;
+    public Set<Student> getStudents() {
+        return students;
     }
 
-    public void setDaughters(Set<Daughter> daughters) {
-        this.daughters = daughters;
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 }

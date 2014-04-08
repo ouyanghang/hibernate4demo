@@ -1,20 +1,20 @@
 package com.jamorn.hibernate.xml.entity;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by sunyameng on 2014/4/6.
+ * Created by yameng on 2014/4/8.
  */
-public class Parent {
+public class Student {
     private Integer id;
     private String name;
-    private Set<Child> children=new HashSet<>();
-    public Parent(){}
-    public Parent(String name,Set<Child> children){
+    private Set<Teacher> teachers=new HashSet<>();
+    public Student(String name){
         this.name=name;
-        this.children=children;
     }
+    public Student(){}
     public Integer getId() {
         return id;
     }
@@ -31,11 +31,11 @@ public class Parent {
         this.name = name;
     }
 
-    public Set<Child> getChildren() {
-        return children;
+    public Set<Teacher> getTeachers() {
+        return teachers;
     }
 
-    public void setChildren(Set<Child> children) {
-        this.children = children;
+    public void setTeachers(Set<Teacher> teachers) {
+        this.teachers = teachers;
     }
 }
