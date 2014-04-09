@@ -25,6 +25,16 @@
       <exported-key name="FK_5mmpg2w50lhj6ejroyi2aowjn" table="a_company" schema="" catalog="hibernate4demo" columns="bose_id"/>
       <exported-key name="FK_2rvissjysxxj12dn05358974w" table="company_bose" schema="" catalog="hibernate4demo" columns="company_id"/>
     </table>
+    <table name="a_channel" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="createTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="site_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_cec6lghawyey41g44r4svfapo" columns="site_id" ref-table="a_site" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_ne14c51ls9c14xy0lw5irof3u" table="a_content" schema="" catalog="hibernate4demo" columns="channel_id"/>
+      <index name="UK_cec6lghawyey41g44r4svfapo" unique="true" columns="site_id"/>
+    </table>
     <table name="a_child" schema="" catalog="hibernate4demo" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
@@ -42,6 +52,15 @@
       <exported-key name="FK_mjyqjbth6oyj4rcdia4tcvhln" table="company_bose" schema="" catalog="hibernate4demo" columns="bose_id"/>
       <index name="UK_5mmpg2w50lhj6ejroyi2aowjn" unique="true" columns="bose_id"/>
     </table>
+    <table name="a_content" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="createTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="channel_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_ne14c51ls9c14xy0lw5irof3u" columns="channel_id" ref-table="a_channel" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UK_ne14c51ls9c14xy0lw5irof3u" unique="true" columns="channel_id"/>
+    </table>
     <table name="a_customer" schema="" catalog="hibernate4demo" type="TABLE">
       <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
       <column name="age" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -51,11 +70,53 @@
       <foreign-key name="FK_au7jrdd8abyesbug3mkqhusiw" columns="address_id" ref-table="a_address" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="UK_au7jrdd8abyesbug3mkqhusiw" unique="true" columns="address_id"/>
     </table>
+    <table name="a_daughter" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="age" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="mother_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_ke69q4n6u0tbu39l0vrqdo9gs" columns="mother_id" ref-table="a_mother" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UK_ke69q4n6u0tbu39l0vrqdo9gs" unique="true" columns="mother_id"/>
+    </table>
+    <table name="a_mother" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_ke69q4n6u0tbu39l0vrqdo9gs" table="a_daughter" schema="" catalog="hibernate4demo" columns="mother_id"/>
+    </table>
     <table name="a_parent" schema="" catalog="hibernate4demo" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
       <exported-key name="FK_hpimixk529cu4gd4cxci033mh" table="a_child" schema="" catalog="hibernate4demo" columns="parent_id"/>
+    </table>
+    <table name="a_site" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="createTime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_cec6lghawyey41g44r4svfapo" table="a_channel" schema="" catalog="hibernate4demo" columns="site_id"/>
+    </table>
+    <table name="a_student" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_khb3kdgvweq2tjyof0anp3c08" table="a_teacher_student" schema="" catalog="hibernate4demo" columns="student_id"/>
+    </table>
+    <table name="a_teacher" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_d4yqx4avi40ad3oooyssre25s" table="a_teacher_student" schema="" catalog="hibernate4demo" columns="teacher_id"/>
+    </table>
+    <table name="a_teacher_student" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="teacher_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="student_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="teacher_id,student_id"/>
+      <foreign-key name="FK_d4yqx4avi40ad3oooyssre25s" columns="teacher_id" ref-table="a_teacher" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_khb3kdgvweq2tjyof0anp3c08" columns="student_id" ref-table="a_student" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_khb3kdgvweq2tjyof0anp3c08" unique="false" columns="student_id"/>
     </table>
     <table name="company_bose" schema="" catalog="hibernate4demo" type="TABLE">
       <column name="bose_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -87,6 +148,21 @@
       <foreign-key name="FK_mus08g6ao3labmo3rrcwqj609" columns="address_id" ref-table="x_address" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="UK_mus08g6ao3labmo3rrcwqj609" unique="true" columns="address_id"/>
     </table>
+    <table name="x_daughter" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="age" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="mother_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_cydqushfyjxgp2vrwed61l0aw" columns="mother_id" ref-table="x_mother" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_cydqushfyjxgp2vrwed61l0aw" unique="false" columns="mother_id"/>
+    </table>
+    <table name="x_mother" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_cydqushfyjxgp2vrwed61l0aw" table="x_daughter" schema="" catalog="hibernate4demo" columns="mother_id"/>
+    </table>
     <table name="x_parent" schema="" catalog="hibernate4demo" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
@@ -104,6 +180,26 @@
       <column name="info" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="FK_bpl2t5b3w6q5hithuc0erh8p9" columns="id" ref-table="x_product" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="x_student" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_6c8w98u7miq7sgk0kdh674307" table="x_teacher_student" schema="" catalog="hibernate4demo" columns="student_id"/>
+    </table>
+    <table name="x_teacher" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_6oqnv1uu3fdc5srwvagfxb0ac" table="x_teacher_student" schema="" catalog="hibernate4demo" columns="teacher_id"/>
+    </table>
+    <table name="x_teacher_student" schema="" catalog="hibernate4demo" type="TABLE">
+      <column name="teacher_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="student_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="student_id,teacher_id"/>
+      <foreign-key name="FK_6oqnv1uu3fdc5srwvagfxb0ac" columns="teacher_id" ref-table="x_teacher" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_6c8w98u7miq7sgk0kdh674307" columns="student_id" ref-table="x_student" ref-schema="" ref-catalog="hibernate4demo" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_6oqnv1uu3fdc5srwvagfxb0ac" unique="false" columns="teacher_id"/>
     </table>
     <table name="CHARACTER_SETS" schema="" catalog="information_schema" type="SYSTEM VIEW">
       <column name="CHARACTER_SET_NAME" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12" def="Jyc="/>

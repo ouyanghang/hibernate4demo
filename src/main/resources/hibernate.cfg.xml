@@ -51,6 +51,10 @@
         <mapping class="com.jamorn.hibernate.annotation.entity.Teacher"/>
         <mapping class="com.jamorn.hibernate.annotation.entity.Student"/>
 
+        <mapping class="com.jamorn.hibernate.annotation.entity.Site"/>
+        <mapping class="com.jamorn.hibernate.annotation.entity.Channel"/>
+        <mapping class="com.jamorn.hibernate.annotation.entity.Content"/>
+
 
         <!--<mapping class="com.jamorn.hibernate.annotation.entity.Product"/>-->
         <!--<mapping class="com.jamorn.hibernate.annotation.entity.ProductInfo"/>-->
