@@ -2,6 +2,7 @@ package com.jamorn.hibernate.annotation.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,8 +12,8 @@ import java.util.List;
  */
 @Entity
 @Table(name="a_site")
-public class Site {
-    @Id @GeneratedValue
+public class Site implements Serializable{
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private String name;
@@ -58,5 +59,13 @@ public class Site {
 
     public void setChannels(List<Channel> channels) {
         this.channels = channels;
+    }
+
+    public void addChannel(Channel channel){
+        if(channel==null) {
+            throw new RuntimeException("Channel can't be null!");
+        }
+        this.getChannels().add(channel);
+        channel.setSite(this);
     }
 }

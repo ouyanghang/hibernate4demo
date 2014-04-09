@@ -1,7 +1,10 @@
 package com.jamorn.hibernate.annotation.entity;
 
+import org.omg.SendingContext.RunTime;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,25 +14,24 @@ import java.util.List;
  */
 @Entity
 @Table(name="a_channel")
-public class Channel {
+public class Channel implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private String name;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @ManyToOne
-    @JoinColumn(name="site_id",unique = true,nullable = false)
+    @JoinColumn(name="site_id",unique = true)
     private Site site;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "channel")
     private List<Content> contents=new ArrayList<>();
 
     public Channel(){}
-    public Channel(String name,Date createTime,Site site){
+    public Channel(String name,Date createTime){
         this.name=name;
         this.createTime=createTime;
-        this.site=site;
     }
     public Long getId() {
         return id;
@@ -69,5 +71,13 @@ public class Channel {
 
     public void setContents(List<Content> contents) {
         this.contents = contents;
+    }
+
+    public void addContent(Content content){
+        if(content==null) {
+            throw new RuntimeException("Content can't be null!");
+        }
+        this.getContents().add(content);
+        content.setChannel(this);
     }
 }

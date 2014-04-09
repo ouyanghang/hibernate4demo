@@ -2,6 +2,7 @@ package com.jamorn.hibernate.annotation.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,23 +10,22 @@ import java.util.Date;
  */
 @Entity
 @Table(name="a_content")
-public class Content {
+public class Content  implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private String title;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @ManyToOne
-    @JoinColumn(name = "channel_id",unique = true,nullable = false)
+    @JoinColumn(name = "channel_id",unique = true)
     private Channel channel;
 
     public Content(){}
-    public Content(String title,Date createTime,Channel channel){
+    public Content(String title,Date createTime){
         this.title=title;
         this.createTime=createTime;
-        this.channel=channel;
     }
     public Channel getChannel() {
         return channel;
