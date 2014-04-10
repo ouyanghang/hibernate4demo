@@ -19,7 +19,7 @@ public class Content  implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @ManyToOne
-    @JoinColumn(name = "channel_id",unique = true)
+    @JoinColumn(name = "channel_id")
     private Channel channel;
 
     public Content(){}

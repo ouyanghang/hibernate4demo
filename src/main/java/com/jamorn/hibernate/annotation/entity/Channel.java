@@ -23,9 +23,9 @@ public class Channel implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @ManyToOne
-    @JoinColumn(name="site_id",unique = true)
+    @JoinColumn(name="site_id")
     private Site site;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "channel")
+    @OneToMany(cascade =CascadeType.ALL,mappedBy = "channel")
     private List<Content> contents=new ArrayList<>();
 
     public Channel(){}

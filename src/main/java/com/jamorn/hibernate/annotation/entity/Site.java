@@ -19,7 +19,7 @@ public class Site implements Serializable{
     private String name;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
-    @OneToMany(mappedBy = "site",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "site",cascade =CascadeType.ALL )
     private List<Channel> channels=new ArrayList<>();
 
     public Site(){}
@@ -67,5 +67,8 @@ public class Site implements Serializable{
         }
         this.getChannels().add(channel);
         channel.setSite(this);
+    }
+    public String toString(){
+        return String.format("id=%s,name=%s,createTime=%s",String.valueOf(id.longValue()),name,createTime.toString());
     }
 }
