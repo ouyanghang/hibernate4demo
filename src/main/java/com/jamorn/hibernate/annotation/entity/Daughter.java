@@ -14,7 +14,7 @@ public class Daughter {
     private String name;
     private Integer age;
     @ManyToOne(optional = false,cascade = CascadeType.ALL)
-    @JoinColumn(name = "mother_id",unique = true)
+    @JoinColumn(name = "mother_id")
     private Mother mother;
     public Daughter() {
     }

@@ -35,7 +35,25 @@ public class A_MotherCRUD {
             HibernateSessionFactory.closeSession();
         }
     }
+    public static void create2(){
+        Session session= HibernateSessionFactory.getSession();
+        Transaction transaction=session.beginTransaction();
+        try {
+            Mother mother=new Mother();
+            mother.setId(2);
+            Daughter ximorn=new Daughter();
+            ximorn.setName("hhhhh");
+            ximorn.setMother(mother);
+            session.save(ximorn);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+        } finally {
+            HibernateSessionFactory.closeSession();
+        }
+    }
     public static void main(String[] args) {
-        A_MotherCRUD.create();
+        A_MotherCRUD.create2();
     }
 }
