@@ -17,7 +17,7 @@ public class A_MotherCRUD {
         Session session= HibernateSessionFactory.getSession();
         Transaction transaction=session.beginTransaction();
         try {
-            Mother mother=new Mother("MM");
+            Mother mother=new Mother("MM",30);
             Daughter lucy=new Daughter("lucy",20,mother);
             Daughter lili=new Daughter("lili",18,mother);
             Daughter ximorn=new Daughter("ximorn",23,mother);
@@ -35,14 +35,22 @@ public class A_MotherCRUD {
             HibernateSessionFactory.closeSession();
         }
     }
+
+    /**
+     * mother daughter 一对多的关系，如果要持久化一个daughter，且该daughter关联了一个数据库中已经存在的mother，
+     * 如果是双向关联，保存之前应该先load出这个mother，然后在保存
+     * 如果是单向关联，即在多的一方不配置 casacade，那么可以直接保存
+     */
     public static void create2(){
         Session session= HibernateSessionFactory.getSession();
         Transaction transaction=session.beginTransaction();
         try {
+//            Mother mother= (Mother) session.load(Mother.class,1);
             Mother mother=new Mother();
-            mother.setId(2);
+            mother.setId(1);
             Daughter ximorn=new Daughter();
-            ximorn.setName("hhhhh");
+            ximorn.setName("xcvb");
+            ximorn.setAge(10);
             ximorn.setMother(mother);
             session.save(ximorn);
             transaction.commit();

@@ -13,8 +13,8 @@ public class Daughter {
     private Integer id;
     private String name;
     private Integer age;
-    @ManyToOne(optional = false,cascade = CascadeType.ALL)
-    @JoinColumn(name = "mother_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "mother_id",updatable = false)
     private Mother mother;
     public Daughter() {
     }

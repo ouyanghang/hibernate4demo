@@ -14,12 +14,14 @@ public class Mother {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    private Integer age;
     @OneToMany(mappedBy = "mother",cascade = CascadeType.ALL)
     @OrderBy("age")
     private Set<Daughter> daughters=new HashSet<>();
     public Mother(){}
-    public Mother(String name){
+    public Mother(String name,Integer age){
         this.name=name;
+        this.age=age;
     }
 
     public Integer getId() {
@@ -40,6 +42,14 @@ public class Mother {
 
     public Set<Daughter> getDaughters() {
         return daughters;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public void setDaughters(Set<Daughter> daughters) {
